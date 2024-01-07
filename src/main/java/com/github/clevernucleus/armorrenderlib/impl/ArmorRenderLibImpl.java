@@ -30,12 +30,12 @@ public final class ArmorRenderLibImpl {
 	private static <T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, ItemStack stack, LivingEntity entity, EquipmentSlot slot, int light, BipedEntityModel<LivingEntity> contextModel) {
 		if(!(stack.getItem() instanceof ArmorItem)) return;
 		ArmorItem item = (ArmorItem)stack.getItem();
-		
+
 		if(item.getSlotType() != slot) return;
 		var entityRenderer = MinecraftClient.getInstance().getEntityRenderDispatcher().getRenderer(entity);
 		ArmorFeatureRenderer<T, M, A> armorFeatureRenderer = (ArmorFeatureRenderer<T, M, A>)((FeatureRendererAccessor<T, M>)entityRenderer).getFeatureRenderer();
 		A model = ((ArmorTextureCache<A>)armorFeatureRenderer).getArmorCustom(slot);
-		contextModel.setAttributes((BipedEntityModel<LivingEntity>)model);
+		contextModel.copyBipedStateTo((BipedEntityModel<LivingEntity>)model);
 		((ArmorFeatureRendererInvoker<T, M, A>)armorFeatureRenderer).invokeSetVisible(model, slot);
 		
 		for(ArmorRenderLayer layer : RENDERERS.get(item)) {
@@ -51,7 +51,7 @@ public final class ArmorRenderLibImpl {
 	}
 	
 	public static void register(ArmorRenderLayer layer, ItemConvertible ... items) {
-		if(items == null || items.length == 0) return;
+		if(items == null) return;
 		
 		for(ItemConvertible item : items) {
 			if(ArmorRendererRegistryImpl.get(item.asItem()) == null) {

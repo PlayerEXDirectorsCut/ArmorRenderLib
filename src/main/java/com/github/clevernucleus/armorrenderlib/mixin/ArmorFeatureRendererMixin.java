@@ -20,14 +20,14 @@ abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extends Biped
 	@Shadow
 	@Final
 	private static Map<String, Identifier> ARMOR_TEXTURE_CACHE;
+
+	@Shadow
+	@Final
+	private A innerModel;
 	
 	@Shadow
 	@Final
-	private A leggingsModel;
-	
-	@Shadow
-	@Final
-    private A bodyModel;
+    private A outerModel;
 	
 	/*
 	 * We do this instead of just an invoker because Geckolib Injects into #getArmor and runs an instanced set/get exiting the method, 
@@ -35,7 +35,7 @@ abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extends Biped
 	 */
 	@Override
 	public A getArmorCustom(EquipmentSlot slot) {
-		return slot == EquipmentSlot.LEGS ? this.leggingsModel : this.bodyModel;
+		return slot == EquipmentSlot.LEGS ? this.innerModel : this.outerModel;
 	}
 	
 	@Override
