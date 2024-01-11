@@ -2,14 +2,15 @@
     "schemaVersion": 1,
     "id": "armorrenderlib",
     "version": "${version}",
-    "name": "Armor Render Lib",
-    "description": "Extends Fabric API's armor renderer registry to enable a more specific implementation.",
+    "name": "Armor Render Lib: Directors Cut",
+    "description": "A ported version of ArmorRenderLib.",
     "authors": [
-        "CleverNucleus"
+        "CleverNucleus",
+        "MerryweatherLost"
     ],
     "contact": {
-        "homepage": "https://github.com/CleverNucleus/ArmorRenderLib",
-        "sources": "https://github.com/CleverNucleus/ArmorRenderLib"
+        "homepage": "https://github.com/PlayerEXDirectorsCut/ArmorRenderLib",
+        "sources": "https://github.com/PlayerEXDirectorsCut/ArmorRenderLib"
     },
     
     "license": "MIT",
@@ -25,8 +26,8 @@
         "armorrenderlib.mixins.json"
     ],
     "depends": {
-        "fabricloader": ">=0.14.9",
-        "fabric-api": ">=0.59.0",
+        "fabricloader": ">=0.14.25",
+        "fabric-api": ">=0.83.0",
         "minecraft": "1.20.1",
         "java": ">=17"
     }
